@@ -1,4 +1,4 @@
-import { START_FETCH , FETCH_SUCCESS, ERROR } from '../actions/index'
+import { START_FETCH , FETCH_SUCCESS, FETCH_ERROR, ADD_SMURF, ERROR_MESSAGE } from '../actions/index'
 
 
 export const initialState = {
@@ -7,7 +7,7 @@ export const initialState = {
     error: ''
 }
 
-const reducer = (state, action)=>{
+const reducer = (state = initialState, action)=>{
     switch(action.type){
 
         case START_FETCH:
@@ -21,10 +21,20 @@ const reducer = (state, action)=>{
                 isLoading: false,
                 smurfs: action.payload
                      }
-        case ERROR: 
+        case FETCH_ERROR: 
             return {
                 ...state,
                 isLoading: false,
+                error: action.payload
+            }
+        case ADD_SMURF:
+            return {
+                ...state,
+                smurfs: action.payload
+            }
+        case ERROR_MESSAGE:
+            return {
+                ...state,
                 error: action.payload
             }
         default:
