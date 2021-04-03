@@ -1,3 +1,5 @@
+import { START_FETCH , FETCH_SUCCESS, ERROR } from '../actions/index'
+
 
 export const initialState = {
     smurfs: [],
@@ -5,7 +7,29 @@ export const initialState = {
     error: ''
 }
 
-const reducer = ()=>{
+const reducer = (state, action)=>{
+    switch(action.type){
+
+        case START_FETCH:
+            return { 
+                ...state,
+                isLoading: true 
+            }
+        case FETCH_SUCCESS:
+            return {
+                ...state, 
+                isLoading: false,
+                smurfs: action.payload
+                     }
+        case ERROR: 
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
 }
 
 export default reducer;
