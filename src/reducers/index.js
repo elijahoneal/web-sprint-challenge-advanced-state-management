@@ -4,7 +4,8 @@ import { START_FETCH , FETCH_SUCCESS, FETCH_ERROR, ADD_SMURF, ERROR_MESSAGE } fr
 export const initialState = {
     smurfs: [],
     isLoading: false,
-    error: ''
+    error: '',
+    errorMessage: ''
 }
 
 const reducer = (state = initialState, action)=>{
@@ -35,7 +36,7 @@ const reducer = (state = initialState, action)=>{
         case ERROR_MESSAGE:
             return {
                 ...state,
-                error: action.payload
+                errorMessage: action.payload
             }
         default:
             return state

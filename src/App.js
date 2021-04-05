@@ -9,20 +9,19 @@ import "./App.css";
 
 class App extends Component {
   
-  render() {
+componentDidMount() {
+  setTimeout( () => {
+    fetchSmurfs()
+  }, 3000 )
+}
 
-    const handleFetchSmurf = e => {
-      e.preventDefault();
-      this.props.fetchSmurfs();
-    }
+  render() {
     return (
       <div className="App">
         <Header />
      
-        <main onLoad = {handleFetchSmurf}>
-        {this.props.isLoading ? <h3>Looking for Smurfs</h3> :
-        <SmurfList/>}
-          
+        <main>
+          <SmurfList/>
           <AddForm/>
         </main>
       </div>
@@ -30,16 +29,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isLoading: state.isLoading,
-    error: state.error
-  }
   
 
-}
-
-export default connect(mapStateToProps, { fetchSmurfs }) (App);
+export default connect(null, { fetchSmurfs }) (App);
 
 //Task List:
 //1. Connect the fetchSmurfs actions to the App component.

@@ -43,12 +43,12 @@ export const addSmurf = (newSmurf) => {
     }
 }
 
-export const errorMessage = (message) => {
+export const setError = (message) => {
     return (dispatch) => {
         dispatch({
             type: ERROR_MESSAGE,
             payload: {
-                error: message
+                errorMessage: message
             }
         })
     }
